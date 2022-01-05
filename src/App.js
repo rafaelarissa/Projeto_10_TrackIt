@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import LoginPage from "./components/LoginPage";
-import SignUpPage from "./components/LoginPage";
-import HabitsPage from "./components/LoginPage";
-import TodayPage from "./components/LoginPage";
-import HistoricPage from "./components/LoginPage";
+import SignUpPage from "./components/SignUpPage";
+import HabitsPage from "./components/HabitsPage";
+import TodayPage from "./components/TodayPage";
+import HistoricPage from "./components/HistoricPage";
 
 export default function App() {
 
