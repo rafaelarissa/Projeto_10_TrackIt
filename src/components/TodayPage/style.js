@@ -73,7 +73,6 @@ const Checkmark = styled.div`
           height: 100%;
           color: #FFFFFF;
      }
-;
 `;
 export {
      Container,

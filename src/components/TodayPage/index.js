@@ -1,13 +1,18 @@
 import Header from "../Header";
 import Footer from "../Footer";
+import * as dayjs from 'dayjs';
+import 'dayjs/locale/pt-br';
 import { Container, Title, HabitBox, Habits, Checkmark } from "./style";
 
 function TodayPage() {
+     let weekday = dayjs().locale('pt-br').format('dddd');
+     let day = dayjs().format('DD/MM');
+
      return (
           <Container>
                <Header />
                <Title>
-                    <h1>Quinta, 06/01</h1>
+                    <h1>{weekday}, {day}</h1>
                     <h2>Nenhum hábito concluído ainda</h2>
                </Title>
                <Habits>
