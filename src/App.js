@@ -3,7 +3,7 @@ import LoginPage from "./components/LoginPage";
 import SignUpPage from "./components/SignUpPage";
 import HabitsPage from "./components/HabitsPage";
 import TodayPage from "./components/TodayPage";
-import HistoricPage from "./components/HistoryPage";
+import HistoryPage from "./components/HistoryPage";
 
 export default function App() {
 
@@ -14,7 +14,7 @@ export default function App() {
                     <Route path="/cadastro" element={<SignUpPage />} />
                     <Route path="/habitos" element={<HabitsPage />} />
                     <Route path="/hoje" element={<TodayPage />} />
-                    <Route path="/historico" element={<HistoricPage />} />
+                    <Route path="/historico" element={<HistoryPage />} />
                </Routes>
           </BrowserRouter>
      );

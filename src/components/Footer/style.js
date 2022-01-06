@@ -15,6 +15,7 @@ const Footer = styled.div`
 const Nav = styled.nav`
      color: #52B6FF;
      font-size: 18px;
+     cursor: pointer;
 `;
 
 const Div = styled.div`
