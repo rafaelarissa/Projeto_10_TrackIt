@@ -3,7 +3,7 @@ import LoginPage from "./components/LoginPage";
 import SignUpPage from "./components/SignUpPage";
 import HabitsPage from "./components/HabitsPage";
 import TodayPage from "./components/TodayPage";
-import HistoricPage from "./components/HistoricPage";
+import HistoricPage from "./components/HistoryPage";
 
 export default function App() {
 

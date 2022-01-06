@@ -19,7 +19,7 @@ function SignUpPage() {
                     <Input type="email" value={email} placeholder="email" onChange={(e) => setEmail(e.target.value)} />
                     <Input type="password" value={password} placeholder="senha" onChange={(e) => setPassword(e.target.value)} />
                     <Input type="name" value={name} placeholder="nome" onChange={(e) => setName(e.target.value)} />
-                    <Input type="image" value={image} placeholder="foto" onChange={(e) => setImage(e.target.value)} />
+                    <Input type="text" value={image} placeholder="foto" onChange={(e) => setImage(e.target.value)} />
                     <Button type="submit">Cadastrar</Button>
                </form>
                <StyledLink to="/">Já tem uma conta? Faça login!</StyledLink>

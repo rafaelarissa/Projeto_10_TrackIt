@@ -9,13 +9,18 @@ const Header = styled.header`
      box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
      display: flex;
      align-items: center;
-
-     img{
-          padding-left: 18px;
-     }
-     
+     justify-content: space-between;
+     padding: 18px;  
 `;
 
+const Avatar = styled.div`
+     border-radius: 50%;
+     background-color: #0bb898;
+     width: 51px;
+     height: 51px;
+     `;
+
 export {
-     Header
+     Header,
+     Avatar
 }
