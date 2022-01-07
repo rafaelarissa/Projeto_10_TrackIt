@@ -3,7 +3,8 @@ import styled from "styled-components";
 const Button = styled.button`
   height: 45px;
   width: 100%;
-  background-color: ${(props) => typeof props.active !== 'boolean' || props.active ? "#52B6FF" : "#888"};
+  background-color: #52B6FF;
+  ${(props) => props.disabled && "opacity: 0.7;"}
   color: #FFFFFF;
   font-family: 'Lexend Deca', sans-serif;
   padding: 14px;

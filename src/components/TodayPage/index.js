@@ -3,10 +3,26 @@ import Footer from "../Footer";
 import * as dayjs from 'dayjs';
 import 'dayjs/locale/pt-br';
 import { Container, Title, HabitBox, Habits, Checkmark } from "./style";
+import axios from "axios";
+import { useEffect, useState } from "react";
 
-function TodayPage() {
+function TodayPage({ token }) {
      let weekday = dayjs().locale('pt-br').format('dddd');
      let day = dayjs().format('DD/MM');
+
+     const [habits, setHabits] = useState('');
+
+
+     useEffect(() => {
+          const promise = axios.get('https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/today', {
+               headers: {
+                    Authorization: `Bearer ${token}`
+               }
+          });
+
+          promise.then(response => setHabits(response.data));
+          promise.catch(error => console.log(error.response));
+     }, []);
 
      return (
           <Container>
