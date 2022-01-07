@@ -31,7 +31,7 @@ function LoginPage({ setToken }) {
           });
 
           promise.catch(error => {
-               console.log(error.response)
+               alert(error.response.data.message)
                setIsLoading(false);
           });
      }
