@@ -1,4 +1,4 @@
-import { Footer, Nav, Div } from "./style";
+import { Footer, Nav, Div, StyledLink } from "./style";
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 
@@ -6,8 +6,8 @@ function FooterBox() {
      const percentage = 50;
      return (
           <Footer>
-               <Nav>Hábitos</Nav>
-               <Div>
+               <Nav><StyledLink to="/habitos">Hábitos</StyledLink></Nav>
+               <Div><StyledLink to="/hoje">
                     <CircularProgressbar
                          value={percentage}
                          text='Hoje'
@@ -20,8 +20,9 @@ function FooterBox() {
                               trailColor: "transparent"
                          })}
                     />
+               </StyledLink>
                </Div>
-               <Nav>Histórico</Nav>
+               <Nav><StyledLink to="/historico">Histórico</StyledLink></Nav>
           </Footer>
      )
 }

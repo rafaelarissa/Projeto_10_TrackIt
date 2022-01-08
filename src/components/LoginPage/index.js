@@ -1,10 +1,11 @@
 import axios from 'axios';
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { useNavigate } from 'react-router';
 import Button from '../Button';
 import Input from '../Input';
 import Logo from '../Logo.png';
 import Loader from "react-loader-spinner";
+import ImageContext from '../../contexts/ImageContext';
 
 import { Container, StyledLink } from './style';
 
@@ -13,6 +14,8 @@ function LoginPage({ setToken }) {
      const [password, setPassword] = useState('');
      const [isLoading, setIsLoading] = useState(false);
      const navigate = useNavigate();
+
+     const { setImage } = useContext(ImageContext)
 
      function handleLogin(e) {
           e.preventDefault();
@@ -26,6 +29,7 @@ function LoginPage({ setToken }) {
 
           promise.then(response => {
                setToken(response.data.token)
+               setImage(response.data.image)
                setIsLoading(false);
                navigate('/hoje')
           });

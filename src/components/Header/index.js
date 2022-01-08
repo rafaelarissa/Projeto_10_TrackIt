@@ -1,12 +1,13 @@
 import { Header, Avatar } from "./style";
 import LogoHeader from '../LogoHeader.png';
 
-function HeaderBox() {
+function HeaderBox({ image }) {
+
      return (
           <Header>
                <img src={LogoHeader} alt="Logo Topo" />
-               <Avatar />
-          </Header>
+               <Avatar src={image} />
+          </Header >
      )
 }
 

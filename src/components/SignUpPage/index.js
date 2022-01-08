@@ -29,7 +29,6 @@ function SignUpPage() {
           setIsLoading(true);
 
           promise.then(response => {
-               console.log(response)
                setIsLoading(false);
                navigate('/')
           });

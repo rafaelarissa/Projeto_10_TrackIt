@@ -13,11 +13,12 @@ const Header = styled.header`
      padding: 18px;  
 `;
 
-const Avatar = styled.div`
+const Avatar = styled.img`
      border-radius: 50%;
      background-color: #0bb898;
      width: 51px;
      height: 51px;
+     border: none;
      `;
 
 export {

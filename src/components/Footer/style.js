@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 const Footer = styled.div`
      width: 100%;
@@ -24,8 +25,14 @@ const Div = styled.div`
      margin-bottom: 40px;
 `;
 
+const StyledLink = styled(Link)`
+     text-decoration: none;
+     color: inherit;
+`;
+
 export {
      Footer,
      Nav,
-     Div
+     Div,
+     StyledLink
 }
