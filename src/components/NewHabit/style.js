@@ -15,17 +15,18 @@ const ContainerNewHabit = styled.div`
 const Days = styled.div`
      display: flex;
      gap: 4px;
+`;
 
-     button{
-          width: 30px;
-          height: 30px;
-          border-radius: 5px;
-          border: 1px solid #D5D5D5;
-          color: #DBDBDB;
-          background-color: #FFFFFF;
-          font-size: 19.976px;
-          margin-bottom: 29px;
-     }
+const Button = styled.button`
+     font-family: 'Lexend Deca', sans-serif;
+     width: 30px;
+     height: 30px;
+     border-radius: 5px;
+     border: 1px solid #D5D5D5;
+     color: ${props => props.isSelected ? '#FFFFFF' : '#DBDBDB'};
+     background-color: ${props => props.isSelected ? '#CFCFCF' : '#FFFFFF'};
+     font-size: 19.976px;
+     margin-bottom: 29px;
 `;
 
 const Options = styled.div`
@@ -58,5 +59,6 @@ export {
      Cancel,
      Save,
      Days,
-     Options
+     Options,
+     Button
 }

@@ -1,39 +1,59 @@
 import Input from "../Input";
-import { ContainerNewHabit, Cancel, Days, Save, Options } from './style';
+import { useContext, useState } from "react";
+import axios from 'axios';
+import { ContainerNewHabit, Cancel, Days, Save, Options, Button } from './style';
+import HabitsPage from "../HabitsPage";
 
 
-function NewHabit() {
+function NewHabit({ token }) {
+     const [name, setName] = useState('');
+     const [days, setDays] = useState([]);
+     const [selectedDays, setSelectedDays] = useState([]);
+     const weekdays = ['D', 'S', "T", 'Q', 'Q', 'S', 'S'];
+     // const [isSelected, setIsSelected] = useState([]);
 
-     // function handleAddHabit() {
-     //      const promise = axios.post('https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits',
-     //           { name, days }, {
-     //           headers: {
-     //                Authorization: `Bearer ${token}`
-     //           }
-     //      });
+     function handleAddHabit() {
+          const promise = axios.post('https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits',
+               { name, days }, {
+               headers: {
+                    Authorization: `Bearer ${token}`
+               }
+          });
+          promise.then(response => {
+               console.log(response.data);
+               setDays(response.data.days);
+          })
+          promise.catch(error => console.log(error.response));
+     }
 
-     //      promise.then(response => {
-     //           console.log(response.data);
-     //      })
-     //      promise.catch(error => console.log(error.response));
-     // }
+     function handleSelectedDay(day) {
+          selectedDays.filter((item) => {
+               if (item !== day) {
+                    return true
+               }
+          })
 
+          console.log('estou sendo selecionado')
+          setSelectedDays([...selectedDays, day]);
+     }
+     console.log(selectedDays);
 
      return (
           <ContainerNewHabit>
                <Input placeholder="nome do hábito" />
                <Days>
-                    <button>D</button>
-                    <button>S</button>
-                    <button>T</button>
-                    <button>Q</button>
-                    <button>Q</button>
-                    <button>S</button>
-                    <button>S</button>
+                    {
+                         weekdays.map((day, index) => (
+                              <Button
+                                   isSelected={selectedDays.includes(index)}
+                                   onClick={() => handleSelectedDay(index)}
+                              >{day}</Button>
+                         ))
+                    }
                </Days>
                <Options>
                     <Cancel>Cancelar</Cancel>
-                    <Save>Salvar</Save>
+                    <Save onClick={() => { handleAddHabit() }}>Salvar</Save>
                </Options>
           </ContainerNewHabit>
      )
