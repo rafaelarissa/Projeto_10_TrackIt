@@ -4,13 +4,15 @@ import * as dayjs from 'dayjs';
 import 'dayjs/locale/pt-br';
 import { Container, Title, HabitBox, Habits, Checkmark } from "./style";
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import ImageContext from "../../contexts/ImageContext";
 
 function TodayPage({ token }) {
      let weekday = dayjs().locale('pt-br').format('dddd');
      let day = dayjs().format('DD/MM');
 
      const [habits, setHabits] = useState('');
+     const { image } = useContext(ImageContext);
 
 
      useEffect(() => {
@@ -26,7 +28,7 @@ function TodayPage({ token }) {
 
      return (
           <Container>
-               <Header />
+               <Header image={image} />
                <Title>
                     <h1>{weekday}, {day}</h1>
                     <h2>Nenhum hábito concluído ainda</h2>
