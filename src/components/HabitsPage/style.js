@@ -59,12 +59,19 @@ const Habit = styled.div`
   background-color: #FFFFFF;
   border-radius: 5px;
 
+  .habit-top{
+    display: flex;
+    justify-content: space-between;
+
     span{
-      display: flex;
-      justify-content: space-between;
-      font-size: 19.976px;
-       
+      font-size: 19.976px;  
     }
+    ion-icon{
+      padding: 11px 10px 0 0; 
+      cursor: pointer; 
+    }
+  }
+
  `;
 
 export {
