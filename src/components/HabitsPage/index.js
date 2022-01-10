@@ -12,6 +12,9 @@ import { useNavigate } from 'react-router-dom';
 function HabitsPage() {
      const [habits, setHabits] = useState([]);
      const [newHabit, setNewHabit] = useState(false);
+     const [name, setName] = useState('');
+     const [days, setDays] = useState([]);
+     const [selectedDays, setSelectedDays] = useState([]);
      const { image } = useContext(ImageContext);
      const { token } = useContext(TokenContext);
 
@@ -54,7 +57,7 @@ function HabitsPage() {
                     <h1>Meus hábitos</h1>
                     <AddHabit onClick={() => setNewHabit(!newHabit)}>+</AddHabit>
                </Title>
-               {newHabit && <NewHabit habits={handleHabit} setNewHabit={setNewHabit} weekdays={weekdays} />}
+               {newHabit && <NewHabit listHabits={handleHabit} setNewHabit={setNewHabit} weekdays={weekdays} name={name} days={days} setName={setName} setDays={setDays} selectedDays={selectedDays} setSelectedDays={setSelectedDays} />}
                {habits.length === 0 ? <span>Você não tem nenhum hábito cadastrado ainda.
                     Adicione um hábito para começar a trackear!
                </span> :

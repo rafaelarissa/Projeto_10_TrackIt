@@ -6,11 +6,7 @@ import { useContext } from "react/cjs/react.development";
 import TokenContext from "../../contexts/TokenContext";
 
 
-function NewHabit({ setNewHabit, weekdays, habits }) {
-     const [name, setName] = useState('');
-     const [days, setDays] = useState([]);
-     const [selectedDays, setSelectedDays] = useState([]);
-
+function NewHabit({ setNewHabit, weekdays, listHabits, name, days, setName, setDays, selectedDays, setSelectedDays }) {
      const { token } = useContext(TokenContext);
 
      function handleAddHabit() {
@@ -60,7 +56,7 @@ function NewHabit({ setNewHabit, weekdays, habits }) {
                </Days>
                <Options>
                     <Cancel onClick={() => setNewHabit(false)}>Cancelar</Cancel>
-                    <Save onClick={() => { handleAddHabit(); habits() }}>Salvar</Save>
+                    <Save onClick={() => { handleAddHabit(); listHabits() }}>Salvar</Save>
                </Options>
           </ContainerNewHabit>
      )
