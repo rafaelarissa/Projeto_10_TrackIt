@@ -1,17 +1,19 @@
+import axios from 'axios';
 import Header from "../Header";
 import Footer from "../Footer";
-import { useState, useEffect, useContext } from 'react';
-import axios from 'axios';
-import { Container, AddHabit, Title } from "./style";
-import ImageContext from "../../contexts/ImageContext";
 import NewHabit from "../NewHabit";
+import { useState, useEffect, useContext } from 'react';
+import { Container, AddHabit, Title, Habit, Habits } from "./style";
+import ImageContext from "../../contexts/ImageContext";
+import TokenContext from "../../contexts/TokenContext";
 
-function HabitsPage({ token }) {
-     const [name, setName] = useState('');
-     const [days, setDays] = useState('');
-     const [habits, setHabits] = useState('');
+
+function HabitsPage() {
+     const [habits, setHabits] = useState(null);
      const [newHabit, setNewHabit] = useState(false);
      const { image } = useContext(ImageContext);
+     const { token } = useContext(TokenContext);
+     const weekdays = ['D', 'S', "T", 'Q', 'Q', 'S', 'S'];
 
      useEffect(() => {
           const promise = axios.get('https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits', {
@@ -24,6 +26,10 @@ function HabitsPage({ token }) {
           promise.catch(error => console.log(error.response));
      }, []);
 
+     function handleDeleteHabit() {
+
+     }
+
      return (
           <Container>
                <Header image={image} />
@@ -31,8 +37,22 @@ function HabitsPage({ token }) {
                     <h1>Meus hábitos</h1>
                     <AddHabit onClick={() => setNewHabit(!newHabit)}>+</AddHabit>
                </Title>
-               {newHabit && <NewHabit />}
-               <span>Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para começar a trackear!</span>
+               {newHabit && <NewHabit habits={habits} setNewHabit={setNewHabit} weekdays={weekdays} />}
+               {habits === null ? <span>Você não tem nenhum hábito cadastrado ainda.
+                    Adicione um hábito para começar a trackear!
+               </span> :
+                    <Habits>
+                         {
+                              habits.map((habit) => (
+                                   <Habit>
+                                        <span>{habit.name} <ion-icon name="trash-outline" onClick={handleDeleteHabit}></ion-icon></span>
+                                        <div>{habit.days}</div>
+
+                                   </Habit>
+                              ))
+                         }
+                    </Habits>
+               }
                <Footer />
           </Container>
      );

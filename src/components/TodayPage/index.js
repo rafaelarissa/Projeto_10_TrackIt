@@ -6,13 +6,15 @@ import { Container, Title, HabitBox, Habits, Checkmark } from "./style";
 import axios from "axios";
 import { useContext, useEffect, useState } from "react";
 import ImageContext from "../../contexts/ImageContext";
+import TokenContext from "../../contexts/TokenContext";
 
-function TodayPage({ token }) {
+function TodayPage() {
      let weekday = dayjs().locale('pt-br').format('dddd');
      let day = dayjs().format('DD/MM');
 
      const [habits, setHabits] = useState('');
      const { image } = useContext(ImageContext);
+     const { token } = useContext(TokenContext);
 
 
      useEffect(() => {

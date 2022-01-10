@@ -6,16 +6,18 @@ import Input from '../Input';
 import Logo from '../Logo.png';
 import Loader from "react-loader-spinner";
 import ImageContext from '../../contexts/ImageContext';
-
+import TokenContext from '../../contexts/TokenContext';
 import { Container, StyledLink } from './style';
 
-function LoginPage({ setToken }) {
+function LoginPage() {
      const [email, setEmail] = useState('');
      const [password, setPassword] = useState('');
      const [isLoading, setIsLoading] = useState(false);
      const navigate = useNavigate();
 
      const { setImage } = useContext(ImageContext)
+     // const { setToken } = useContext(TokenContext)
+     const { setAndPersistToken } = useContext(TokenContext);
 
      function handleLogin(e) {
           e.preventDefault();
@@ -28,9 +30,10 @@ function LoginPage({ setToken }) {
           setIsLoading(true);
 
           promise.then(response => {
-               setToken(response.data.token)
+               // setToken(response.data.token)
                setImage(response.data.image)
                setIsLoading(false);
+               setAndPersistToken(response.data.token);
                navigate('/hoje')
           });
 

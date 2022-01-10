@@ -41,8 +41,36 @@ const AddHabit = styled.button`
   cursor: pointer;
  `;
 
+const Habits = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: auto;
+  margin-top: 20px;
+  gap: 10px;
+ `;
+
+const Habit = styled.div`
+  display: flex;
+  flex-direction: column;
+  height: 91px;
+  margin-left: 18px;
+  margin-right: 17px;
+  background-color: #FFFFFF;
+  border-radius: 5px;
+
+    span{
+      display: flex;
+      justify-content: space-between;
+      font-size: 19.976px;
+       
+    }
+ `;
+
 export {
   Container,
   Title,
-  AddHabit
+  AddHabit,
+  Habits,
+  Habit
 }

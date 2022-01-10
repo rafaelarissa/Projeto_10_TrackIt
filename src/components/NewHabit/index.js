@@ -2,13 +2,16 @@ import Input from "../Input";
 import { useState } from "react";
 import axios from 'axios';
 import { ContainerNewHabit, Cancel, Days, Save, Options, Button } from './style';
+import { useContext } from "react/cjs/react.development";
+import TokenContext from "../../contexts/TokenContext";
 
 
-function NewHabit({ token, setNewHabit }) {
+function NewHabit({ setNewHabit, weekdays }) {
      const [name, setName] = useState('');
      const [days, setDays] = useState([]);
      const [selectedDays, setSelectedDays] = useState([]);
-     const weekdays = ['D', 'S', "T", 'Q', 'Q', 'S', 'S'];
+
+     const { token } = useContext(TokenContext);
 
      function handleAddHabit() {
           const promise = axios.post('https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits', {
