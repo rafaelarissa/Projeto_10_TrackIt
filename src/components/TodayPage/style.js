@@ -64,14 +64,16 @@ const Checkmark = styled.div`
      width: 69px;
      height: 69px;
      padding: 10px 10px 10px 10px;
-     background-color: #EBEBEB;
+     background-color: ${props => props.isDone ? '#8FC549' : '#EBEBEB'};
      border: 1px solid #E7E7E7;
      border-radius: 5px;
+     cursor: pointer;
 
      ion-icon{
-          width: 100%;
-          height: 100%;
+          font-size: 45px;
+          --ionicon-stroke-width: 70px;
           color: #FFFFFF;
+          
      }
 `;
 export {

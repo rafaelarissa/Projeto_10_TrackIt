@@ -12,7 +12,8 @@ function TodayPage() {
      let weekday = dayjs().locale('pt-br').format('dddd');
      let day = dayjs().format('DD/MM');
 
-     const [habits, setHabits] = useState('');
+     const [habits, setHabits] = useState([]);
+     const [doneList, setDoneList] = useState([false]);
      const { image } = useContext(ImageContext);
      const { token } = useContext(TokenContext);
 
@@ -28,6 +29,15 @@ function TodayPage() {
           promise.catch(error => console.log(error.response));
      }, []);
 
+     function handleHabitDone(done) {
+          if (doneList.includes(done)) {
+               setDoneList(doneList.filter(doneList => doneList !== done));
+               return;
+          }
+
+          setDoneList([...doneList, done]);
+     }
+
      return (
           <Container>
                <Header image={image} />
@@ -36,30 +46,23 @@ function TodayPage() {
                     <h2>Nenhum hábito concluído ainda</h2>
                </Title>
                <Habits>
-                    <HabitBox>
-                         <div>
-                              <h1>Ler 1 capítulo de livro</h1>
-                              <h2>Sequência atual: 3 dias</h2>
-                              <h2>Seu recorde: 5 dias</h2>
-                         </div>
-                         <Checkmark><ion-icon name="checkmark-sharp"></ion-icon></Checkmark>
-                    </HabitBox>
-                    <HabitBox>
-                         <div>
-                              <h1>Ler 1 capítulo de livro</h1>
-                              <h2>Sequência atual: 3 dias</h2>
-                              <h2>Seu recorde: 5 dias</h2>
-                         </div>
-                         <Checkmark><ion-icon name="checkmark-sharp"></ion-icon></Checkmark>
-                    </HabitBox>
-                    <HabitBox>
-                         <div>
-                              <h1>Ler 1 capítulo de livro</h1>
-                              <h2>Sequência atual: 3 dias</h2>
-                              <h2>Seu recorde: 5 dias</h2>
-                         </div>
-                         <Checkmark><ion-icon name="checkmark-sharp"></ion-icon></Checkmark>
-                    </HabitBox>
+                    {
+                         habits.map((habit, index) => (
+                              <HabitBox>
+                                   <div>
+                                        <h1>{habit.name}</h1>
+                                        <h2>Sequência atual: {habit.currentSequence} dias</h2>
+                                        <h2>Seu recorde: {habit.highestSequence} dias</h2>
+                                   </div>
+
+                                   <Checkmark
+                                        isDone={doneList.includes(index)}
+                                        onClick={() => handleHabitDone(index)}>
+                                        <ion-icon name="checkmark-outline"></ion-icon>
+                                   </Checkmark>
+                              </HabitBox>
+                         ))
+                    }
                </Habits>
                <Footer />
           </Container>
