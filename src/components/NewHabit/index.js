@@ -1,20 +1,20 @@
 import Input from "../Input";
-import { useContext, useState } from "react";
+import { useState } from "react";
 import axios from 'axios';
 import { ContainerNewHabit, Cancel, Days, Save, Options, Button } from './style';
-import HabitsPage from "../HabitsPage";
 
 
-function NewHabit({ token }) {
+function NewHabit({ token, setNewHabit }) {
      const [name, setName] = useState('');
      const [days, setDays] = useState([]);
      const [selectedDays, setSelectedDays] = useState([]);
      const weekdays = ['D', 'S', "T", 'Q', 'Q', 'S', 'S'];
-     // const [isSelected, setIsSelected] = useState([]);
 
      function handleAddHabit() {
-          const promise = axios.post('https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits',
-               { name, days }, {
+          const promise = axios.post('https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits', {
+               name,
+               days: selectedDays
+          }, {
                headers: {
                     Authorization: `Bearer ${token}`
                }
@@ -23,24 +23,26 @@ function NewHabit({ token }) {
                console.log(response.data);
                setDays(response.data.days);
           })
-          promise.catch(error => console.log(error.response));
+          promise.catch(error => {
+               console.log(error.response)
+               alert('Não foi possível salvar o hábito, tente novamente')
+          });
      }
 
      function handleSelectedDay(day) {
-          selectedDays.filter((item) => {
-               if (item !== day) {
-                    return true
-               }
-          })
+          if (selectedDays.includes(day)) {
+               setSelectedDays(selectedDays.filter(selectedDay => selectedDay !== day));
+               return;
+          }
 
-          console.log('estou sendo selecionado')
           setSelectedDays([...selectedDays, day]);
+          setDays(selectedDays);
      }
      console.log(selectedDays);
 
      return (
           <ContainerNewHabit>
-               <Input placeholder="nome do hábito" />
+               <Input type="text" value={name} placeholder="nome do hábito" onChange={(e) => setName(e.target.value)} />
                <Days>
                     {
                          weekdays.map((day, index) => (
@@ -52,7 +54,7 @@ function NewHabit({ token }) {
                     }
                </Days>
                <Options>
-                    <Cancel>Cancelar</Cancel>
+                    <Cancel onClick={() => setNewHabit(false)}>Cancelar</Cancel>
                     <Save onClick={() => { handleAddHabit() }}>Salvar</Save>
                </Options>
           </ContainerNewHabit>
