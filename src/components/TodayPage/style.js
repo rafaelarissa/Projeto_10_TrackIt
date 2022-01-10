@@ -23,7 +23,7 @@ const Title = styled.div`
   }  
 
   h2{
-     color: #BABABA;
+     color: ${props => props.progress > 0 ? '#8FC549' : '#BABABA'};
      font-size: 18px;
   }
 `;
@@ -44,8 +44,16 @@ const HabitBox = styled.div`
      }
      h2{
           font-size: 12.976px;
-          color: #666666;
           margin-bottom: 4px;
+          color:'#666666';
+     }
+
+     span.current-sequence{
+          color: ${props => props.isDone ? '#8FC549' : '#666666'}
+     }
+
+     span.record{
+          color: ${props => props.record === props.currentSequence && props.record !== 0 ? '#8FC549' : '#666666'}
      }
 `;
 

@@ -71,13 +71,32 @@ const Habit = styled.div`
       cursor: pointer; 
     }
   }
-
  `;
+
+const Button = styled.button`
+  font-family: 'Lexend Deca', sans-serif;
+  width: 30px;
+  height: 30px;
+  border-radius: 5px;
+  border: 1px solid #D5D5D5;
+  color: ${props => props.isSelected ? '#FFFFFF' : '#DBDBDB'};
+  background-color: ${props => props.isSelected ? '#CFCFCF' : '#FFFFFF'};
+  font-size: 19.976px;
+  margin-bottom: 29px;
+`;
+
+const Days = styled.div`
+  display: flex;
+  gap: 4px; 
+  padding-left: 14px;
+`;
 
 export {
   Container,
   Title,
   AddHabit,
   Habits,
-  Habit
+  Habit,
+  Button,
+  Days
 }

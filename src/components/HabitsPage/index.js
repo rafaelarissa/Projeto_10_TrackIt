@@ -3,11 +3,10 @@ import Header from "../Header";
 import Footer from "../Footer";
 import NewHabit from "../NewHabit";
 import { useState, useEffect, useContext } from 'react';
-import { Container, AddHabit, Title, Habit, Habits } from "./style";
+import { Container, AddHabit, Title, Habit, Habits, Button, Days } from "./style";
 import ImageContext from "../../contexts/ImageContext";
 import TokenContext from "../../contexts/TokenContext";
 import { useNavigate } from 'react-router-dom';
-
 
 function HabitsPage() {
      const [habits, setHabits] = useState([]);
@@ -30,6 +29,7 @@ function HabitsPage() {
 
           promise.then(response => {
                setHabits(response.data)
+
           });
           promise.catch(error => console.log(error.response));
      }
@@ -71,7 +71,10 @@ function HabitsPage() {
                                              }}>
                                              </ion-icon>
                                         </div>
-                                        <div>{habit.days}</div>
+                                        <Days>{
+                                             weekdays.map((day, index) => <Button isSelected={habit.days.includes(index)}>{day}</Button>)
+                                        }
+                                        </Days>
                                    </Habit>
                               ))
                          }

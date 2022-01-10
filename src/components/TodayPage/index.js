@@ -60,7 +60,7 @@ function TodayPage() {
      return (
           <Container>
                <Header image={image} />
-               <Title>
+               <Title progress={progress}>
                     <h1>{weekday}, {day}</h1>
                     <h2>{progress === 0 ? 'Nenhum hábito concluído ainda' :
                          `${Math.round(progress)}% dos hábitos concluídos`
@@ -69,11 +69,11 @@ function TodayPage() {
                <Habits>
                     {
                          habits.map((habit) => (
-                              <HabitBox>
+                              <HabitBox record={habit.highestSequence} currentSequence={habit.currentSequence} isDone={habit.done}>
                                    <div>
                                         <h1>{habit.name}</h1>
-                                        <h2>Sequência atual: {habit.currentSequence} dias</h2>
-                                        <h2>Seu recorde: {habit.highestSequence} dias</h2>
+                                        <h2>Sequência atual: <span classeName="current-sequence">{habit.currentSequence}</span> dias</h2>
+                                        <h2>Seu recorde: <span className="record">{habit.highestSequence} dias</span></h2>
                                    </div>
 
                                    <Checkmark
