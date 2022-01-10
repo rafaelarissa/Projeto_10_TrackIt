@@ -15,7 +15,8 @@ function TodayPage() {
      const [habits, setHabits] = useState([]);
      const { image } = useContext(ImageContext);
      const { token } = useContext(TokenContext);
-     const { setProgress } = useContext(TokenContext);
+     const { progress, setProgress } = useContext(TokenContext);
+     let accomplished = 0
 
      function handleTodayHabit() {
           const promise = axios.get('https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/today', {
@@ -26,7 +27,6 @@ function TodayPage() {
 
           promise.then(response => {
                setHabits(response.data);
-               let accomplished = 0
                response.data.map(habits => {
                     if (habits.done) accomplished++;
 
@@ -62,11 +62,13 @@ function TodayPage() {
                <Header image={image} />
                <Title>
                     <h1>{weekday}, {day}</h1>
-                    <h2>Nenhum hábito concluído ainda</h2>
+                    <h2>{progress === 0 ? 'Nenhum hábito concluído ainda' :
+                         `${Math.round(progress)}% dos hábitos concluídos`
+                    }</h2>
                </Title>
                <Habits>
                     {
-                         habits.map((habit, index) => (
+                         habits.map((habit) => (
                               <HabitBox>
                                    <div>
                                         <h1>{habit.name}</h1>
