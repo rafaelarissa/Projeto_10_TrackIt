@@ -13,29 +13,48 @@ function TodayPage() {
      let day = dayjs().format('DD/MM');
 
      const [habits, setHabits] = useState([]);
-     const [doneList, setDoneList] = useState([false]);
      const { image } = useContext(ImageContext);
      const { token } = useContext(TokenContext);
+     const { setProgress } = useContext(TokenContext);
 
-
-     useEffect(() => {
+     function handleTodayHabit() {
           const promise = axios.get('https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/today', {
                headers: {
                     Authorization: `Bearer ${token}`
                }
           });
 
-          promise.then(response => setHabits(response.data));
+          promise.then(response => {
+               setHabits(response.data);
+               let accomplished = 0
+               response.data.map(habits => {
+                    if (habits.done) accomplished++;
+
+               })
+               setProgress((accomplished / habits.length) * 100)
+
+          });
+
           promise.catch(error => console.log(error.response));
+     }
+
+     useEffect(() => {
+          handleTodayHabit()
      }, []);
 
-     function handleHabitDone(done) {
-          if (doneList.includes(done)) {
-               setDoneList(doneList.filter(doneList => doneList !== done));
-               return;
-          }
+     function handleHabitDone(done, IdHabit) {
+          const statusHabit = done ? 'uncheck' : 'check';
 
-          setDoneList([...doneList, done]);
+          const promise = axios.post(`https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/${IdHabit}/${statusHabit}`, {}, {
+               headers: {
+                    Authorization: `Bearer ${token}`
+               }
+          });
+
+          promise.then(response => {
+               handleTodayHabit()
+          });
+          promise.catch(error => console.log(error.response));
      }
 
      return (
@@ -56,8 +75,10 @@ function TodayPage() {
                                    </div>
 
                                    <Checkmark
-                                        isDone={doneList.includes(index)}
-                                        onClick={() => handleHabitDone(index)}>
+                                        isDone={habit.done}
+                                        onClick={() => {
+                                             handleHabitDone(habit.done, habit.id)
+                                        }}>
                                         <ion-icon name="checkmark-outline"></ion-icon>
                                    </Checkmark>
                               </HabitBox>
@@ -65,7 +86,7 @@ function TodayPage() {
                     }
                </Habits>
                <Footer />
-          </Container>
+          </Container >
      );
 }
 

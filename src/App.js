@@ -12,6 +12,7 @@ export default function App() {
      const tokenOnLocalStorage = localStorage.getItem("token");
      const [token, setToken] = useState(tokenOnLocalStorage);
      const [image, setImage] = useState('');
+     const [progress, setProgress] = useState(0);
 
      function setAndPersistToken(token) {
           setToken(token);
@@ -19,7 +20,7 @@ export default function App() {
      }
 
      return (
-          <TokenContext.Provider value={{ token, setToken, setAndPersistToken }}>
+          <TokenContext.Provider value={{ token, setToken, setAndPersistToken, progress, setProgress }}>
                <ImageContext.Provider value={{ image, setImage }}>
                     <BrowserRouter>
                          <Routes>

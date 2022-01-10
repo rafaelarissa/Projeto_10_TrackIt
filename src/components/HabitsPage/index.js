@@ -38,8 +38,6 @@ function HabitsPage() {
      }, []);
 
      function handleDeleteHabit(IdHabit) {
-          console.log('fui clicado');
-
           const promise = axios.delete(`https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/${IdHabit}`, {
                headers: {
                     Authorization: `Bearer ${token}`
