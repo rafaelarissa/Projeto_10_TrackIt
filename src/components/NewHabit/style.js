@@ -1,7 +1,18 @@
 import styled from "styled-components";
 
+const Container = styled.div`
+     width: 98%;
+     display: flex;
+     justify-content: flex-start;
+     align-items: center;
+     flex-direction: column;
+     background-color: #F2F2F2;
+     margin-right: 18px;
+     margin-left: 17px;
+`;
+
 const ContainerNewHabit = styled.div`
-     width: 340px;
+     width: 100%;
      height: 180px;
      background-color: #FFFFFF;
      border-radius: 5px;  
@@ -55,6 +66,7 @@ const Save = styled.button`
 `;
 
 export {
+     Container,
      ContainerNewHabit,
      Cancel,
      Save,

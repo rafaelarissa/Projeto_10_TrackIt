@@ -5,17 +5,17 @@ import 'dayjs/locale/pt-br';
 import { Container, Title, HabitBox, Habits, Checkmark } from "./style";
 import axios from "axios";
 import { useContext, useEffect, useState } from "react";
-import ImageContext from "../../contexts/ImageContext";
 import TokenContext from "../../contexts/TokenContext";
+import UserContext from "../../contexts/UserContext";
 
 function TodayPage() {
      let weekday = dayjs().locale('pt-br').format('dddd');
      let day = dayjs().format('DD/MM');
 
      const [habits, setHabits] = useState([]);
-     const { image } = useContext(ImageContext);
+     const { image } = useContext(UserContext);
      const { token } = useContext(TokenContext);
-     const { progress, setProgress } = useContext(TokenContext);
+     const { progress, setProgress } = useContext(UserContext);
      let accomplished = 0
 
      function handleTodayHabit() {

@@ -4,9 +4,9 @@ import Footer from "../Footer";
 import NewHabit from "../NewHabit";
 import { useState, useEffect, useContext } from 'react';
 import { Container, AddHabit, Title, Habit, Habits, Button, Days } from "./style";
-import ImageContext from "../../contexts/ImageContext";
 import TokenContext from "../../contexts/TokenContext";
 import { useNavigate } from 'react-router-dom';
+import UserContext from '../../contexts/UserContext';
 
 function HabitsPage() {
      const [habits, setHabits] = useState([]);
@@ -14,7 +14,7 @@ function HabitsPage() {
      const [name, setName] = useState('');
      const [days, setDays] = useState([]);
      const [selectedDays, setSelectedDays] = useState([]);
-     const { image } = useContext(ImageContext);
+     const { image } = useContext(UserContext);
      const { token } = useContext(TokenContext);
 
      const weekdays = ['D', 'S', "T", 'Q', 'Q', 'S', 'S'];

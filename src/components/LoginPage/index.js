@@ -5,9 +5,9 @@ import Button from '../Button';
 import Input from '../Input';
 import Logo from '../Logo.png';
 import Loader from "react-loader-spinner";
-import ImageContext from '../../contexts/ImageContext';
 import TokenContext from '../../contexts/TokenContext';
 import { Container, StyledLink } from './style';
+import UserContext from '../../contexts/UserContext';
 
 function LoginPage() {
      const [email, setEmail] = useState('');
@@ -15,8 +15,7 @@ function LoginPage() {
      const [isLoading, setIsLoading] = useState(false);
      const navigate = useNavigate();
 
-     const { setImage } = useContext(ImageContext)
-     // const { setToken } = useContext(TokenContext)
+     const { setImage } = useContext(UserContext)
      const { setAndPersistToken } = useContext(TokenContext);
 
      function handleLogin(e) {

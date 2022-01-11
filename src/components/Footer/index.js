@@ -1,11 +1,11 @@
 import { Footer, Nav, Div, StyledLink } from "./style";
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
-import TokenContext from "../../contexts/TokenContext";
 import { useContext } from "react";
+import UserContext from "../../contexts/UserContext";
 
 function FooterBox() {
-     const { progress } = useContext(TokenContext)
+     const { progress } = useContext(UserContext);
      const percentage = progress;
      return (
           <Footer>

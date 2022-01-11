@@ -5,8 +5,8 @@ import SignUpPage from "./components/SignUpPage";
 import HabitsPage from "./components/HabitsPage";
 import TodayPage from "./components/TodayPage";
 import HistoryPage from "./components/HistoryPage";
-import ImageContext from "./contexts/ImageContext";
 import TokenContext from "./contexts/TokenContext";
+import UserContext from "./contexts/UserContext";
 
 export default function App() {
      const tokenOnLocalStorage = localStorage.getItem("token");
@@ -20,8 +20,8 @@ export default function App() {
      }
 
      return (
-          <TokenContext.Provider value={{ token, setToken, setAndPersistToken, progress, setProgress }}>
-               <ImageContext.Provider value={{ image, setImage }}>
+          <TokenContext.Provider value={{ token, setToken, setAndPersistToken }}>
+               <UserContext.Provider value={{ image, setImage, progress, setProgress }}>
                     <BrowserRouter>
                          <Routes>
                               <Route path="/" element={<LoginPage />} />
@@ -31,7 +31,7 @@ export default function App() {
                               <Route path="/historico" element={<HistoryPage />} />
                          </Routes>
                     </BrowserRouter>
-               </ImageContext.Provider>
+               </UserContext.Provider>
           </TokenContext.Provider>
      );
 }

@@ -1,7 +1,7 @@
 import Input from "../Input";
 import { useState } from "react";
 import axios from 'axios';
-import { ContainerNewHabit, Cancel, Days, Save, Options, Button } from './style';
+import { Container, ContainerNewHabit, Cancel, Days, Save, Options, Button } from './style';
 import { useContext } from "react/cjs/react.development";
 import TokenContext from "../../contexts/TokenContext";
 
@@ -42,23 +42,25 @@ function NewHabit({ setNewHabit, weekdays, listHabits, name, days, setName, setD
      }
 
      return (
-          <ContainerNewHabit>
-               <Input type="text" value={name} placeholder="nome do hábito" onChange={(e) => setName(e.target.value)} />
-               <Days>
-                    {
-                         weekdays.map((day, index) => (
-                              <Button
-                                   isSelected={selectedDays.includes(index)}
-                                   onClick={() => handleSelectedDay(index)}
-                              >{day}</Button>
-                         ))
-                    }
-               </Days>
-               <Options>
-                    <Cancel onClick={() => setNewHabit(false)}>Cancelar</Cancel>
-                    <Save onClick={() => { handleAddHabit(); listHabits() }}>Salvar</Save>
-               </Options>
-          </ContainerNewHabit>
+          <Container>
+               <ContainerNewHabit>
+                    <Input type="text" value={name} placeholder="nome do hábito" onChange={(e) => setName(e.target.value)} />
+                    <Days>
+                         {
+                              weekdays.map((day, index) => (
+                                   <Button
+                                        isSelected={selectedDays.includes(index)}
+                                        onClick={() => handleSelectedDay(index)}
+                                   >{day}</Button>
+                              ))
+                         }
+                    </Days>
+                    <Options>
+                         <Cancel onClick={() => setNewHabit(false)}>Cancelar</Cancel>
+                         <Save onClick={() => { handleAddHabit(); listHabits() }}>Salvar</Save>
+                    </Options>
+               </ContainerNewHabit>
+          </Container>
      )
 }
 
