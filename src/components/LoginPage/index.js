@@ -15,7 +15,7 @@ function LoginPage() {
      const [isLoading, setIsLoading] = useState(false);
      const navigate = useNavigate();
 
-     const { setImage } = useContext(UserContext)
+     const { setAndPersistUser } = useContext(UserContext)
      const { setAndPersistToken } = useContext(TokenContext);
 
      function handleLogin(e) {
@@ -30,7 +30,7 @@ function LoginPage() {
 
           promise.then(response => {
                // setToken(response.data.token)
-               setImage(response.data.image)
+               setAndPersistUser(response.data.image)
                setIsLoading(false);
                setAndPersistToken(response.data.token);
                navigate('/hoje')

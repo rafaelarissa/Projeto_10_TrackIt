@@ -38,6 +38,7 @@ const Button = styled.button`
      background-color: ${props => props.isSelected ? '#CFCFCF' : '#FFFFFF'};
      font-size: 19.976px;
      margin-bottom: 29px;
+     cursor: pointer;
 `;
 
 const Options = styled.div`
@@ -52,6 +53,7 @@ const Cancel = styled.button`
      background: #FFFFFF;
      font-size: 15.976px;
      font-family: 'Lexend Deca', sans-serif;
+     cursor: pointer;
 `;
 
 const Save = styled.button`
@@ -63,6 +65,7 @@ const Save = styled.button`
      border: none;
      font-size: 15.976px;
      font-family: 'Lexend Deca', sans-serif;
+     cursor: pointer;
 `;
 
 export {

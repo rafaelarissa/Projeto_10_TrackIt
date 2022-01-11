@@ -7,13 +7,15 @@ import Logo from '../Logo.png';
 import Loader from "react-loader-spinner";
 
 import { Container, StyledLink } from './style';
+import { useContext } from 'react/cjs/react.development';
+import UserContext from '../../contexts/UserContext';
 
 function SignUpPage() {
      const [email, setEmail] = useState('');
      const [password, setPassword] = useState('');
      const [name, setName] = useState('');
-     const [image, setImage] = useState('');
      const [isLoading, setIsLoading] = useState(false);
+     const { image, setAndPersistUser } = useContext(UserContext);
      const navigate = useNavigate();
 
      function handleSignUp(e) {
@@ -45,7 +47,7 @@ function SignUpPage() {
                     <Input type="email" value={email} placeholder="email" onChange={(e) => setEmail(e.target.value)} disabled={isLoading} />
                     <Input type="password" value={password} placeholder="senha" onChange={(e) => setPassword(e.target.value)} disabled={isLoading} />
                     <Input type="name" value={name} placeholder="nome" onChange={(e) => setName(e.target.value)} disabled={isLoading} />
-                    <Input type="text" value={image} placeholder="foto" onChange={(e) => setImage(e.target.value)} disabled={isLoading} />
+                    <Input type="text" value={image} placeholder="foto" onChange={(e) => setAndPersistUser(e.target.value)} disabled={isLoading} />
                     <Button type="submit" disabled={isLoading}>
                          {isLoading ? <Loader type="ThreeDots" color="#FFFFFF" height={50} width={50} /> : "Cadastrar"}
                     </Button>

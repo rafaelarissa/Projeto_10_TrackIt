@@ -10,8 +10,9 @@ import UserContext from "./contexts/UserContext";
 
 export default function App() {
      const tokenOnLocalStorage = localStorage.getItem("token");
+     const imageOnLocalStorage = localStorage.getItem("image");
      const [token, setToken] = useState(tokenOnLocalStorage);
-     const [image, setImage] = useState('');
+     const [image, setImage] = useState(imageOnLocalStorage);
      const [progress, setProgress] = useState(0);
 
      function setAndPersistToken(token) {
@@ -19,9 +20,16 @@ export default function App() {
           localStorage.setItem("token", token);
      }
 
+     function setAndPersistUser(image) {
+          setImage(image);
+          localStorage.setItem("image", image);
+          // localStorage.setItem("name", name);
+          // localStorage.setItem("password", password);
+     }
+
      return (
           <TokenContext.Provider value={{ token, setToken, setAndPersistToken }}>
-               <UserContext.Provider value={{ image, setImage, progress, setProgress }}>
+               <UserContext.Provider value={{ image, setImage, setAndPersistUser, progress, setProgress }}>
                     <BrowserRouter>
                          <Routes>
                               <Route path="/" element={<LoginPage />} />
